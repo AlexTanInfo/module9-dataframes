@@ -1,35 +1,37 @@
 # Exercise 6: Husky Football 2015 Season
 # Read in the Husky Football 2015 game data into a variable called `husky.games.2015`
-
-
+husky.games.2015 <- read.csv("data/huskies_2015.csv", stringsAsFactors = FALSE)
+is.data.frame(husky.games.2015)
+View(husky.games.2015)
 
 # Create a vector of the teams that the Huskies played against during that season
-
-
+teams <-  c(husky.games.2015[ , 2])
+teams
 
 # Create a vector of the their final scores for the games
 # Call this variable `husky.scores`
-
-
+husky.scores <- c(husky.games.2015[ , 3])
+husky.scores
 
 # Create 2 variables called `rushing.yards` and `passing.yards` to represent the yards the Huskies rushed and passed
-
+rushing.yards <- husky.games.2015[ , 5]
+passing.yards <- husky.games.2015[ , 6]
 
 
 # Create a variable called `combined.yards` that is the total yardage of the Huskies for each game
-
+combined.yards <- rushing.yards+passing.yards
 
 
 # Add the `combined.yards` vector to the dataframe with the column name being `combined`
-
+husky.games.2015$combined <- combined.yards
 
 
 # Write the dataframe to a new `.csv` file called `huskies_2015_improved.csv` into the `data directory`
-
+write.csv(husky.games.2015, file = "data/husky_games_2015_improved.csv")
 
 
 # What is the score of the game where the Huskies had the most combined yards?
-
+most.yards.game <- husky.scores[combined.yards == max(combined.yards)]
 
 
 # Define a function `MostYardsScore` that takes in an argument `games` (a data frame) and
